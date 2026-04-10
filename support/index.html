@@ -1,246 +1,520 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Check Day Support</title>
-  <meta name="description" content="Support page for Check Day and 매일 체크.">
+  <title>Hangaroa Support</title>
+  <meta
+    name="description"
+    content="Hangaroa app support page with help, troubleshooting, and contact information for OffDays Alarm and Check Day."
+  >
   <style>
     :root {
-      --bg: #f4f8ff;
-      --card: rgba(255, 255, 255, 0.88);
-      --text: #12141a;
-      --muted: #5d6472;
-      --line: rgba(18, 20, 26, 0.08);
-      --accent: #1f7cff;
-      --accent-soft: #dff0ff;
-      --radius: 28px;
-      --shadow: 0 18px 48px rgba(17, 24, 39, 0.10);
+      color-scheme: light;
+      --bg: #f6f1e8;
+      --paper: rgba(255, 251, 245, 0.86);
+      --card: rgba(255, 255, 255, 0.82);
+      --line: rgba(72, 50, 32, 0.14);
+      --text: #2e241c;
+      --muted: #6f6358;
+      --accent: #ba5b2e;
+      --accent-strong: #8f3b16;
+      --accent-soft: #f3d8c8;
+      --shadow: 0 20px 60px rgba(94, 64, 42, 0.12);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max: 1080px;
     }
 
     * {
       box-sizing: border-box;
     }
 
-    body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top right, rgba(31, 124, 255, 0.16), transparent 28%),
-        radial-gradient(circle at bottom left, rgba(52, 199, 89, 0.14), transparent 24%),
-        var(--bg);
+    html {
+      scroll-behavior: smooth;
     }
 
-    main {
-      max-width: 860px;
+    body {
+      margin: 0;
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(241, 188, 152, 0.55), transparent 34%),
+        radial-gradient(circle at top right, rgba(203, 149, 92, 0.22), transparent 30%),
+        linear-gradient(180deg, #fbf6ee 0%, var(--bg) 54%, #efe3d3 100%);
+      min-height: 100vh;
+    }
+
+    a {
+      color: var(--accent-strong);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.16em;
+    }
+
+    a:hover {
+      color: var(--accent);
+    }
+
+    .shell {
+      width: min(calc(100% - 32px), var(--max));
       margin: 0 auto;
-      padding: 48px 20px 72px;
+      padding: 24px 0 56px;
+    }
+
+    .hero,
+    .panel,
+    .faq-item,
+    .app-card {
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line);
     }
 
     .hero {
-      padding: 8px 6px 28px;
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(145deg, rgba(255, 250, 245, 0.95), rgba(249, 235, 220, 0.82)),
+        var(--paper);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -80px -110px auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(186, 91, 46, 0.22), transparent 66%);
+      pointer-events: none;
     }
 
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.7);
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.02em;
+      margin: 0 0 14px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
     }
 
     h1 {
-      margin: 18px 0 10px;
-      font-size: clamp(42px, 6vw, 72px);
-      line-height: 0.98;
-      letter-spacing: -0.04em;
+      max-width: 12ch;
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
     }
 
-    .hero p {
-      max-width: 680px;
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+    }
+
+    h3 {
+      font-size: 1.1rem;
+    }
+
+    p {
       margin: 0;
-      font-size: 18px;
-      line-height: 1.7;
+      line-height: 1.68;
+      font-size: 1rem;
+    }
+
+    .hero-copy {
+      max-width: 680px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .hero-lead {
+      font-size: 1.08rem;
       color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .button.secondary {
+      background: rgba(255, 255, 255, 0.6);
+      color: var(--accent-strong);
+      border-color: rgba(143, 59, 22, 0.18);
     }
 
     .grid {
       display: grid;
       gap: 18px;
+      margin-top: 18px;
     }
 
-    .card {
-      padding: 28px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
+    .apps {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .support-grid {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .app-card,
+    .panel,
+    .faq-item {
       background: var(--card);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(16px);
+      border-radius: var(--radius-lg);
+      padding: 22px;
     }
 
-    h2 {
-      margin: 0 0 14px;
-      font-size: 28px;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
+    .app-card {
+      display: grid;
+      gap: 14px;
     }
 
-    h3 {
-      margin: 0 0 10px;
-      font-size: 18px;
-      line-height: 1.3;
+    .badge {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
     }
 
-    p,
-    li {
-      font-size: 16px;
-      line-height: 1.7;
+    .meta {
+      display: grid;
+      gap: 8px;
+      color: var(--muted);
+    }
+
+    .section {
+      margin-top: 18px;
+      padding-top: 8px;
+    }
+
+    .section-head {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .section-kicker {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+    }
+
+    .section-copy {
+      max-width: 700px;
       color: var(--muted);
     }
 
     ul {
       margin: 0;
-      padding-left: 20px;
+      padding-left: 1.2rem;
+      color: var(--muted);
+      line-height: 1.7;
     }
 
-    .contact {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      padding: 12px 16px;
-      border-radius: 16px;
-      background: var(--accent-soft);
-      color: var(--text);
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    .split {
+    .faq-list {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      gap: 14px;
     }
 
-    .footer {
-      margin-top: 18px;
-      padding: 0 6px;
-      font-size: 14px;
+    .faq-item {
+      display: grid;
+      gap: 10px;
+    }
+
+    .faq-item p:last-child {
       color: var(--muted);
     }
 
-    a {
-      color: var(--accent);
+    .region-list {
+      columns: 2;
+      column-gap: 32px;
+    }
+
+    .contact-line {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .footnote {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .footer {
+      margin-top: 28px;
+      padding: 0 4px;
+      color: var(--muted);
+      font-size: 0.95rem;
     }
 
     @media (max-width: 720px) {
-      main {
-        padding: 32px 16px 56px;
+      .shell {
+        width: min(calc(100% - 20px), var(--max));
+        padding-top: 12px;
+        padding-bottom: 36px;
       }
 
-      .card {
-        padding: 22px;
+      .hero,
+      .panel,
+      .faq-item,
+      .app-card {
+        padding: 20px;
       }
 
-      .split {
-        grid-template-columns: 1fr;
+      .region-list {
+        columns: 1;
       }
     }
   </style>
 </head>
 <body>
-  <main>
+  <main class="shell">
     <section class="hero">
-      <div class="eyebrow">Check Day / 매일 체크</div>
-      <h1>Support</h1>
-      <p>
-        Need help using Check Day? This page covers the basics for reminders, widgets, and routine tracking.
-        Korean support information is included below as well.
-      </p>
+      <div class="hero-copy">
+        <p class="eyebrow">Hangaroa App Support</p>
+        <h1>Support for apps that fit your daily routine</h1>
+        <p class="hero-lead">
+          This is Hangaroa's shared app support page. It currently includes support information for
+          <strong>OffDays Alarm</strong> and <strong>Check Day</strong>.
+        </p>
+        <div class="hero-actions">
+          <a class="button" href="#offdays-alarm">View alarm app support</a>
+          <a class="button secondary" href="#check-day">View Check Day support</a>
+        </div>
+      </div>
     </section>
 
-    <section class="grid">
-      <article class="card">
-        <h2>English</h2>
-        <p>
-          Check Day helps you track recurring routines with quick daily check-ins, reminders, and widgets.
-          If something is not working as expected, please contact us with your device model, iOS version, and a short description of the issue.
+    <section class="section" id="apps">
+      <div class="section-head">
+        <p class="section-kicker">Supported Apps</p>
+        <h2>Currently supported apps</h2>
+        <p class="section-copy">
+          This page is structured so multiple Hangaroa apps can share one support URL. For now, it focuses on
+          OffDays Alarm and Check Day, and it can be extended later with more app cards in the same format.
         </p>
-        <div class="contact">
-          <a class="chip" href="mailto:ccoroom@gmail.com">ccoroom@gmail.com</a>
-          <a class="chip" href="https://sakim.notion.site/Privacy-Policy-for-Check-Day-app-32b472b8898e80e0a5dbd3484e2d7409?pvs=74">Privacy Policy</a>
-        </div>
-      </article>
-
-      <div class="split">
-        <article class="card">
-          <h3>Common help topics</h3>
-          <ul>
-            <li>How to create and edit recurring check-ins</li>
-            <li>How reminder times and reset time work</li>
-            <li>How to add and refresh the Home Screen widget</li>
-            <li>How to update your privacy and ad consent choices</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>Response details</h3>
-          <ul>
-            <li>Please include screenshots if the issue is visual.</li>
-            <li>Please include your app version if the issue appeared after an update.</li>
-            <li>Support requests are handled by email.</li>
-          </ul>
-        </article>
       </div>
-
-      <article class="card">
-        <h2>한국어</h2>
-        <p>
-          매일 체크는 반복 루틴을 빠르게 기록하고, 리마인더와 위젯으로 진행 상황을 확인할 수 있는 앱입니다.
-          문제가 있으면 기기 모델, iOS 버전, 증상 설명을 함께 보내 주세요.
-        </p>
-        <div class="contact">
-          <a class="chip" href="mailto:ccoroom@gmail.com">ccoroom@gmail.com</a>
-          <a class="chip" href="https://sakim.notion.site/Privacy-Policy-for-Check-Day-app-32b472b8898e80e0a5dbd3484e2d7409?pvs=74">개인정보처리방침</a>
-        </div>
-      </article>
-
-      <div class="split">
-        <article class="card">
-          <h3>자주 묻는 내용</h3>
-          <ul>
-            <li>반복 체크 생성 및 수정 방법</li>
-            <li>리마인더 시간과 초기화 시간 동작 방식</li>
-            <li>홈 화면 위젯 추가 및 새로고침 방법</li>
-            <li>광고 및 개인정보 선택 변경 방법</li>
-          </ul>
+      <div class="grid apps">
+        <article class="app-card" id="offdays-alarm">
+          <span class="badge">Alarm App</span>
+          <div>
+            <h3>OffDays Alarm</h3>
+            <p class="footnote">Skip alarms on off days</p>
+          </div>
+          <p>
+            OffDays Alarm helps you automatically skip recurring alarms on public holidays and your own custom off days.
+          </p>
+          <div class="meta">
+            <p>You can manage repeat days, labels, sounds, and snooze settings in one place.</p>
+            <p>Supported off-day regions: South Korea, United States, Canada, United Kingdom, Australia, Singapore, Japan, Taiwan, India, China, Hong Kong, Germany, France, and Spain.</p>
+          </div>
         </article>
-
-        <article class="card">
-          <h3>문의 시 포함해 주세요</h3>
-          <ul>
-            <li>화면 문제면 스크린샷을 함께 보내 주세요.</li>
-            <li>업데이트 이후 발생한 문제라면 앱 버전을 알려 주세요.</li>
-            <li>지원 문의는 이메일로 처리됩니다.</li>
-          </ul>
+        <article class="app-card" id="check-day">
+          <span class="badge">Routine Tracker</span>
+          <div>
+            <h3>Check Day</h3>
+            <p class="footnote">Daily check-ins, reminders, and widgets</p>
+          </div>
+          <p>
+            Check Day helps you track recurring routines with quick daily check-ins, reminders, and Home Screen widgets.
+          </p>
+          <div class="meta">
+            <p>Create recurring checks, set reset times and reminders, and review progress from the app or widget.</p>
+            <p>Support is handled by email, and privacy information is available at <a href="https://hangaroa.net/privacy">hangaroa.net/privacy</a>.</p>
+          </div>
         </article>
       </div>
     </section>
 
-    <p class="footer">
-      This support page is intended for App Store support information for Check Day / 매일 체크.
-    </p>
+    <section class="section">
+      <div class="section-head">
+        <p class="section-kicker">Quick Help</p>
+        <h2>Quick help by app</h2>
+        <p class="section-copy">
+          These are the most common support points users may need from an App Store support URL.
+        </p>
+      </div>
+      <div class="grid support-grid">
+        <section class="panel">
+          <h3>If an alarm does not ring</h3>
+          <ul>
+            <li>Make sure alarm permission is allowed in iPhone Settings.</li>
+            <li>After saving, confirm that the alarm toggle is turned on.</li>
+            <li>If the recurring schedule is empty or invalid, the alarm may not be registered properly.</li>
+          </ul>
+        </section>
+        <section class="panel">
+          <h3>If Skip Off Days is not reflected</h3>
+          <ul>
+            <li>Make sure an off-day region is selected in the app.</li>
+            <li>Skip Off Days works meaningfully only for alarms with repeat days selected.</li>
+            <li>When the app launches, it prepares up to the next four weeks of off-day-aware alarms.</li>
+          </ul>
+        </section>
+        <section class="panel">
+          <h3>Managing custom off days</h3>
+          <ul>
+            <li>You can add your own off days in addition to official public holidays.</li>
+            <li>You can exclude public holidays you do not want to treat as off days.</li>
+            <li>Custom off days you add are stored on your device.</li>
+          </ul>
+        </section>
+        <section class="panel">
+          <h3>Notifications and privacy</h3>
+          <ul>
+            <li>Notification permission is required if you want alerts when the last scheduled alarm has ended.</li>
+            <li>Off-day data uses public holiday information based on Google Calendar data.</li>
+            <li>If ads are shown in the app, privacy choices may also be available.</li>
+          </ul>
+        </section>
+        <section class="panel">
+          <h3>Using Check Day reminders</h3>
+          <ul>
+            <li>You can create and edit recurring check-ins with target counts, reset times, and reminder times.</li>
+            <li>If reminders are not arriving, confirm notification permission in iPhone Settings and review the reminder times in the app.</li>
+            <li>Reset time affects when a routine starts a new cycle, so late-night checks may still count toward the previous cycle depending on your setting.</li>
+          </ul>
+        </section>
+        <section class="panel">
+          <h3>Check Day widgets and troubleshooting</h3>
+          <ul>
+            <li>You can add a Home Screen widget to view routine progress and check items more quickly.</li>
+            <li>If the widget looks empty, open Check Day and make sure at least one recurring check exists.</li>
+            <li>If the issue is visual, include a screenshot when you contact support.</li>
+          </ul>
+        </section>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <p class="section-kicker">FAQ</p>
+        <h2>Frequently asked questions</h2>
+      </div>
+      <div class="faq-list">
+        <article class="faq-item">
+          <h3>Why can an alarm still appear on a holiday?</h3>
+          <p>
+            Skip Off Days does not permanently delete your alarm. Instead, the app prepares upcoming alarm schedules again
+            based on your off-day settings. After changing those settings, open the app once so it can refresh future alarms.
+          </p>
+        </article>
+        <article class="faq-item">
+          <h3>Can I use the app if my country is not on the supported list?</h3>
+          <p>
+            Official public holiday support is currently limited to the listed regions. However, you can still add your own
+            custom off days, so the app can work with your schedule even if your region is not officially supported yet.
+          </p>
+        </article>
+        <article class="faq-item">
+          <h3>Will my off-day data be removed if I delete the app?</h3>
+          <p>
+            Custom off days and app data may be removed when the app is deleted, depending on how the device handles local storage.
+            If any schedule is important, we recommend keeping a separate record as well.
+          </p>
+        </article>
+        <article class="faq-item">
+          <h3>What does the app do?</h3>
+          <p>
+            OffDays Alarm helps you keep recurring alarms active while automatically skipping public holidays and your own custom off days.
+            If changes are not reflected, open the app once so it can prepare the next scheduled alarms again.
+          </p>
+        </article>
+        <article class="faq-item">
+          <h3>What does Check Day do?</h3>
+          <p>
+            Check Day helps you track recurring routines with simple daily check-ins, reminders, and widgets. If something is not working
+            as expected, include your device model, iOS version, app version, and a short description of the issue in your support email.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <p class="section-kicker">Coverage</p>
+        <h2>Supported off-day calendar regions</h2>
+      </div>
+      <section class="panel">
+        <ul class="region-list">
+          <li>South Korea</li>
+          <li>United States</li>
+          <li>Canada</li>
+          <li>United Kingdom</li>
+          <li>Australia</li>
+          <li>Singapore</li>
+          <li>Japan</li>
+          <li>Taiwan</li>
+          <li>India</li>
+          <li>China</li>
+          <li>Hong Kong</li>
+          <li>Germany</li>
+          <li>France</li>
+          <li>Spain</li>
+        </ul>
+      </section>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="section-head">
+        <p class="section-kicker">Contact</p>
+        <h2>Contact support</h2>
+      </div>
+      <div class="grid support-grid">
+        <section class="panel">
+          <h3>Support email</h3>
+          <p class="contact-line"><a href="mailto:ccoroom@gmail.com">ccoroom@gmail.com</a></p>
+        </section>
+        <section class="panel">
+          <h3>Privacy policy</h3>
+          <p class="contact-line"><a href="https://hangaroa.net/privacy">hangaroa.net/privacy</a></p>
+        </section>
+        <section class="panel">
+          <h3>Helpful details to include</h3>
+          <ul>
+            <li>Your device model and iOS version</li>
+            <li>The screen or setting where the issue happened</li>
+            <li>The alarm time, repeat days, whether Skip Off Days was enabled, or the Check Day reminder and widget state</li>
+          </ul>
+        </section>
+      </div>
+    </section>
+
+    <p class="footer">Copyright © Hangaroa.</p>
   </main>
 </body>
 </html>
